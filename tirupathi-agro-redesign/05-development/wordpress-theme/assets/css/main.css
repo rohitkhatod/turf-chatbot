@@ -1,0 +1,62 @@
+:root {
+  --green-900: #1d4d2d;
+  --green-700: #2b7a40;
+  --green-100: #ecf7ef;
+  --yellow-500: #f5b400;
+  --text: #153321;
+  --white: #fff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+}
+.container { width: min(1120px, 92%); margin-inline: auto; }
+.site-header { background: var(--white); border-bottom: 1px solid #e7eee9; position: sticky; top: 0; z-index: 10; }
+.header-wrap { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 1rem; }
+.brand { font-weight: 700; font-size: 1.25rem; text-decoration: none; color: var(--green-900); }
+.menu { list-style: none; display: flex; gap: 1rem; padding: 0; margin: 0; }
+.menu a { text-decoration: none; color: var(--text); font-weight: 600; }
+.menu-toggle { display: none; }
+.hero { background: linear-gradient(120deg, var(--green-100), #f8fbf8); padding: 4rem 0; }
+.hero-grid { display: grid; gap: 2rem; grid-template-columns: 1.3fr 1fr; align-items: center; }
+.eyebrow { color: var(--green-700); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+.hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.2; margin-top: .25rem; }
+.hero-card { background: var(--white); padding: 1.5rem; border-radius: 16px; box-shadow: 0 8px 28px rgba(25, 65, 41, .1); }
+.section { padding: 3.5rem 0; }
+.section-intro { margin-top: -.5rem; color: #3f604d; }
+.btn { display: inline-block; border: 0; border-radius: 8px; padding: .8rem 1rem; text-decoration: none; cursor: pointer; font-weight: 700; }
+.btn-primary { background: var(--green-700); color: var(--white); }
+.btn-outline { border: 2px solid var(--green-700); color: var(--green-700); background: transparent; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.filters { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0; }
+.filter-btn { border: 1px solid #bdd4c5; background: var(--white); color: var(--text); border-radius: 999px; padding: .5rem .8rem; cursor: pointer; }
+.filter-btn.is-active { background: var(--green-700); color: var(--white); border-color: var(--green-700); }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.card { background: var(--white); border: 1px solid #d7e6dc; border-radius: 12px; padding: 1rem; }
+.testimonials { background: #f7faf8; }
+.testimonial { display: none; max-width: 720px; font-size: 1.1rem; }
+.testimonial.is-active { display: block; }
+.cta { background: var(--green-900); color: var(--white); }
+.cta-grid { display: grid; gap: 2rem; grid-template-columns: 1.2fr 1fr; align-items: start; }
+.lead-form { background: rgba(255, 255, 255, .1); padding: 1rem; border-radius: 12px; }
+.lead-form label { display: block; margin-bottom: .75rem; font-weight: 600; }
+.lead-form input, .lead-form textarea { width: 100%; border: 1px solid #9ec2aa; border-radius: 8px; padding: .65rem; margin-top: .35rem; }
+.form-alert { border-radius: 8px; padding: .65rem .8rem; font-weight: 700; margin: 0 0 .75rem; }
+.form-alert.success { background: #d4f4df; color: #0f5d2e; }
+.form-alert.error { background: #ffe2e2; color: #8f1f1f; }
+.site-footer { background: #0f2f1c; color: #d7eade; padding-top: 2rem; }
+.footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 1.5rem; }
+.footer-menu { list-style: none; padding: 0; margin: 0; display: grid; gap: .35rem; }
+.footer-menu a { color: #d7eade; text-decoration: none; }
+.copyright { text-align: center; padding: 1rem; border-top: 1px solid rgba(255, 255, 255, .2); margin-top: 1.5rem; }
+
+@media (max-width: 800px) {
+  .menu-toggle { display: inline-block; background: var(--green-700); color: var(--white); border: 0; border-radius: 8px; padding: .6rem .8rem; }
+  .primary-nav { display: none; position: absolute; right: 4%; top: 72px; background: var(--white); padding: .8rem; border: 1px solid #d9e8de; border-radius: 12px; }
+  .primary-nav.is-open { display: block; }
+  .menu { flex-direction: column; min-width: 180px; }
+  .hero-grid, .cta-grid, .footer-grid, .cards { grid-template-columns: 1fr; }
+}
