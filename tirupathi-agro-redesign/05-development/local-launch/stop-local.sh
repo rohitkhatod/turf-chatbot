@@ -16,13 +16,17 @@ fi
 
 if [ -f "$PID_FILE" ]; then
   PID="$(cat "$PID_FILE")"
-  if [ -n "$PID" ] && kill -0 "$PID" >/dev/null 2>&1; then
-    kill "$PID" || true
-    echo "Stopped fallback preview server (PID $PID)."
+  # A stale PID file must never signal an unrelated process or process group.
+  if [[ "$PID" =~ ^[1-9][0-9]*$ ]] && kill -0 "$PID" >/dev/null 2>&1; then
+    CMD="$(ps -ww -p "$PID" -o args= 2>/dev/null || true)"
+    if [[ "$CMD" == "python3 $BASE_DIR/serve-preview.py" ]]; then
+      kill "$PID"
+      echo "Stopped fallback preview server (PID $PID)."
+    else
+      echo "Ignoring stale PID file: PID $PID is not this project's preview." >&2
+    fi
   fi
   rm -f "$PID_FILE"
 fi
-
-pkill -f "serve-preview.py" >/dev/null 2>&1 || true
 
 echo "Local launch services stopped."
